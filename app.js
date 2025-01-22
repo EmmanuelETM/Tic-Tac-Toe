@@ -1,6 +1,4 @@
-
 const game = (function() {
-
   const obj = {
     '1:1': '',
     '1:2': '',
@@ -14,23 +12,8 @@ const game = (function() {
   }
   
   function render() {
-    return `
-        ${obj['1:1']} | ${obj['1:2']} | ${obj['1:3']}
-      -----------
-        ${obj['2:1']} | ${obj['2:2']} | ${obj['2:3']}
-      -----------
-        ${obj['3:1']} | ${obj['3:2']} | ${obj['3:3']}
-    `
-  }
-
-  
-
-
-  function gameController () {
 
   }
-
-
 
   const players = (function(name1, name2) {
     return {
@@ -41,16 +24,14 @@ const game = (function() {
       player2: {
         name: name2,
         mark: 'O'
-      }
+      },
     }
   })();
-
-
 
   return {}
 })
 
-game()
+game();
 
 
 
