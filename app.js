@@ -16,7 +16,6 @@ const GameBoard = (() => {
 
     const placeMark = (position, mark) => {
         const cell = board[position];
-
         if(cell.getMark() === ""){
             cell.setMark(mark);
             return true
@@ -59,7 +58,8 @@ const GameController = (()=> {
         [2, 4, 6], // Right Diagonal
     ];
 
-    const checkWinner = (board, winCombos) => {
+    const checkWinner = () => {
+        const board = GameBoard.getBoard();
         for (const combo of winCombos) {
             const [a, b, c] = combo;
             if (board[a] && 
@@ -71,48 +71,77 @@ const GameController = (()=> {
         return false;
     };
 
-    const playGame = () => {
-        while (true) {
-            count++;
-            const board = GameBoard.getBoard();
-            const choice = parseInt(prompt("pick position: "));
-            const move = GameBoard.placeMark(choice, activePlayer.mark);
-    
-            if (!move) {
-                console.log("invalid move");
-                count--;
-                continue;
-            }
-    
-            if(checkWinner(board, winCombos)) {
-                console.log(`${activePlayer.name} wins`);
-                break;
-            }
-    
-            if(board.every(mark => mark !== "") || count >= 9) {
-                console.log("tie");
-                break;
-            }
-            
-            switchPlayer();
+    const checkTie = () => {
+        const board = GameBoard.getBoard();
+        return board.every(mark => mark !== "") || count >= 9;
+    }
+
+    const resetGame = () => {
+        count = 0;
+        GameBoard.resetBoard();
+    }
+
+    const handleMoves = (choice) => {
+        count++;
+        const move = GameBoard.placeMark(choice, activePlayer.mark);
+        if (!move) {
+            return;
         }
+        switchPlayer();
     }
     
-    return { playGame, players }
+    return { handleMoves, players, resetGame, checkWinner, checkTie }
 })();
 
 
 const DisplayController = (()=> {
-    
+    const boardContainer = document.querySelector(".board-container");
+    const resetButton = document.querySelector(".restart");
+    const gameDialog = document.querySelector(".game-dialog");
+    const playerDialog = document.querySelector(".player.dialog");
+
+    const createCells = () => {
+        GameBoard.getBoard().forEach((element, index) => {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.innerText = element;
+            cell.setAttribute("data-index", `${index}`)
+            boardContainer.appendChild(cell);
+        })
+    }
+
+    const updateBoard = () => {
+        boardContainer.innerText = "";
+        createCells();
+    }
+
+    //listener's functions
+
+    const handleBoardClick = (event) => {
+        GameController.handleMoves(event.target.dataset.index);
+        if (GameController.checkWinner()) {
+            gameDialog.showModal();
+        }
+        updateBoard();
+    }
+
+    const Listeners = () => {
+        boardContainer.addEventListener('click', handleBoardClick);
+    }
+
+    return { updateBoard, Listeners };
 })();
 
 
 const Game = (() => {
     const init = () => {
-
+        DisplayController.updateBoard();
+        DisplayController.Listeners();
     }
 
     return { init };
-})()
+})();
+
+Game.init();
 
 
