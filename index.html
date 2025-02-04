@@ -28,6 +28,7 @@
     <div class="overlay"></div>
 
     <dialog class="player-dialog">
+        <h1>Enter Your Names</h1>
         <form action="/">
             <label for="player1">Player 1</label>
             <input type="text" name="player1" id="player1">
@@ -41,8 +42,10 @@
 
     <dialog class="game-dialog">
         <button class="close-button">X</button>
-        <h1 class="game-dialog-header"></h1>
-        <button class="restart">Restart</button>
+        <div>
+            <h1 class="dialog-title"></h1>
+            <button class="restart dialog-button">Restart</button>
+        </div>
     </dialog>
     <script src="./app.js"></script>
 </body>

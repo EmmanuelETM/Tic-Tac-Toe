@@ -20,6 +20,16 @@ body {
     background-color:dodgerblue
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+}
+
 section {
     flex: 1;
     width: 100%;
@@ -31,11 +41,23 @@ section {
     height: 500px;
 }
 
-form {
+form { 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 1rem;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    width: 80%;
+}
+
+label {
+    font-size: 1.5rem;
 }
 
 .board-container {
@@ -52,6 +74,8 @@ form {
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    color: white;
+    font-weight: 500;
 }
 
 .cell {
@@ -76,20 +100,54 @@ dialog {
 
 .player-dialog {
     width: 300px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.restart, .start{
+    flex: 1;
+    background-color: white;
+    color: black;  
+    margin-bottom: 1rem;  
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.8rem;
+    margin-top: 1rem;
+}
+.restart:disabled, .start:disabled {
+    background-color: lightgray;
+}
+
+.form-button {
+    background-color: dodgerblue;
+    color: white;    
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.8rem;
+    margin-top: 1rem;
+}
+
+.dialog-title {
+    margin: 1rem;
 }
 
 .game-dialog {
-    width: 400px;
+    width: 300px;
     text-align: center;
 }
 
 .close-button {
     position: absolute;
     top: 10px;
-    right: 10px;
-    background: red;
-    color: white;
+    right: 15px;
+    font-size: 2rem;
+    color: black;
     border: none;
+    background-color: transparent;
     cursor: pointer;
 }
 

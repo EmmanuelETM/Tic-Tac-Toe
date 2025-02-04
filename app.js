@@ -109,7 +109,7 @@ const Game = (() => {
         const restartButton = document.querySelectorAll(".restart");
         const startButton = document.querySelector(".start");
         const gameDialog = document.querySelector(".game-dialog");
-        const gameDialogH1 = document.querySelector(".game-dialog-header");
+        const gameDialogH1 = document.querySelector(".dialog-title");
         const gameDialogClose = document.querySelector(".close-button");
         const playerDialog = document.querySelector(".player-dialog");
         const form = document.querySelector("form");
@@ -120,8 +120,9 @@ const Game = (() => {
         const playerTurn = document.querySelector(".player-turn");
 
         startButton.disabled = true;
-        // playerDialog.showModal();
-        // overlay.classList.add("active");
+        playerDialog.showModal();
+        overlay.classList.add("active");
+
 
         const createCells = () => {
             GameBoard.getBoard().forEach((element, index) => {
@@ -217,7 +218,6 @@ const Game = (() => {
         const addBoardListener = () => {
             boardContainer.addEventListener('click', handleBoardClick);
         }
-    
 
         return { updateBoard, AddListeners };
     })();
