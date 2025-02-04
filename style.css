@@ -20,10 +20,6 @@ body {
     background-color:dodgerblue
 }
 
-header {
-
-}
-
 section {
     flex: 1;
     width: 100%;
@@ -31,8 +27,16 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 500px;
+    height: 500px;
 }
 
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .board-container {
     display: grid;
@@ -41,8 +45,14 @@ section {
     gap: 0.5rem;
     width: 500px;
     height: 500px;
-  }
-  
+}
+
+.player-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
 
 .cell {
     display: flex;
@@ -52,6 +62,47 @@ section {
     background-color: white;/* Divisores internos */
 }
 
-.tic-tac-toe-cell.selected {
-    background-color: #f0f0f0; /* Fondo ligeramente gris para indicar selección */
-  }
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.player-dialog {
+    width: 300px;
+}
+
+.game-dialog {
+    width: 400px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+}
+
+.overlay.active {
+    display: block;
+}
